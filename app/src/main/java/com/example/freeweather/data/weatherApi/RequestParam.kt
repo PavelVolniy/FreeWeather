@@ -9,6 +9,5 @@ class RequestParam {
     object Local {
         const val localRU = "ru"
         const val localEN = "en"
-        const val localFR = "fr"
     }
 }
