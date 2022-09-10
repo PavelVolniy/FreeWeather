@@ -12,7 +12,7 @@ import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class MAinViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
     private val jsonResponse5DaysFromWeatherApi: MutableLiveData<JsonFromWeatherApi> =
         MutableLiveData()
 
@@ -30,7 +30,7 @@ class MAinViewModel : ViewModel() {
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribe(getWeatherObserverRx())
     }
 
     private fun getWeatherObserverRx(): Observer<JsonFromWeatherApi> {

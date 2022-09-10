@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        <!-- Text Notice Name -->
         <TextView
-            android:id="@+id/tv_notice_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="3dp"/>
+            android:id="@+id/tv_name_date"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="сегодня" />
 
-        <!-- Text Notice Description -->
-        <TextView
-            android:id="@+id/tv_notice_brief"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="3dp" />
+        <ImageView
+            android:id="@+id/iv_icon_row"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_cloud_24" />
 
-        <!-- Text Notice FilePath -->
         <TextView
-            android:id="@+id/tv_notice_file_path"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:padding="3dp"/>
+            android:id="@+id/tv_humidity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="90%" />
+
+        <TextView
+            android:id="@+id/tv_row_temp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="+4" />
+
+        <TextView
+            android:id="@+id/tv_row_wind"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="15км/ч" />
 
     </LinearLayout>
 

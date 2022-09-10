@@ -1,4 +1,4 @@
-package com.example.freeweather.domain
+package com.example.freeweather.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,9 @@ import com.example.freeweather.R
 import com.example.freeweather.data.weatherApi.JsonRequest5days.List
 
 class JsonAdapter : RecyclerView.Adapter<JsonAdapter.JsonListViewHolder>() {
-    private val list = ArrayList<List>()
+    var list = ArrayList<List>()
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JsonListViewHolder {
