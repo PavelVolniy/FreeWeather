@@ -10,4 +10,8 @@ data class Main(
     val temp_kf: Double,
     val temp_max: Double,
     val temp_min: Double
-)
+){
+    fun getTempInt(): Int {
+        return temp.toInt()
+    }
+}

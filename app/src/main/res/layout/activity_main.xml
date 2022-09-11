@@ -7,6 +7,37 @@
     android:padding="15dp"
     tools:context=".presentation.MainActivity">
 
+    <LinearLayout
+        android:id="@+id/ll_name_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_city_name">
+
+
+        <EditText
+            android:autofillHints="name"
+            android:id="@+id/et_name_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLines="1"
+            android:hint="@string/hint_name_city" />
+
+        <ImageButton
+            android:id="@+id/ib_search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_baseline_search_24"
+            app:queryHint="city" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv_city_name"
@@ -14,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:gravity="center"
-        android:text="Ростов на дону"
         android:textSize="35sp"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -24,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:baselineAligned="false"
         app:layout_constraintTop_toBottomOf="@+id/tv_city_name">
 
         <LinearLayout
@@ -36,15 +68,14 @@
                 android:id="@+id/tv_current_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="пн 14 сент 2020" />
+                android:gravity="center" />
+
 
             <TextView
                 android:id="@+id/tv_current_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="10:08"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -59,22 +90,30 @@
                 android:id="@+id/tv_current_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="-15"
-                android:textSize="40sp" />
+                android:textSize="30sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="oC" />
+            <!--            <TextView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:text="oC" />-->
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_descriptions"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="bottom|center"
-            android:text="пасмурно" />
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_current_description"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_descriptions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -92,10 +131,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_data_forecast"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/rv_data_forecast_temp_list">
+        app:layout_constraintTop_toBottomOf="@+id/rv_data_forecast_temp_list"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 

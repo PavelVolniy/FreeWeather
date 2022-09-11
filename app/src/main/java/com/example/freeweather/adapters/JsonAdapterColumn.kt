@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freeweather.R
+import com.example.freeweather.data.MapperWeather
 import com.example.freeweather.data.weatherApi.JsonRequest5days.List
 
 class JsonAdapterColumn : RecyclerView.Adapter<JsonAdapterColumn.JsonColumnListViewHolder>() {
@@ -20,12 +21,8 @@ class JsonAdapterColumn : RecyclerView.Adapter<JsonAdapterColumn.JsonColumnListV
         fun bind(data: ColumnItem) {
             tv_hour_column.text = parseDataHour(data.hour)
             tv_temp_column.text = data.temp
-            when (data.description) {
-                "небольшой дождь" -> iv_icon_column.setImageResource(R.drawable.ic_baseline_cloud_24)
-                "облачно с прояснениями" -> iv_icon_column.setImageResource(R.drawable.ic_baseline_cloud_24)
-                else -> iv_icon_column.setImageResource(R.drawable.ic_baseline_cloud_off_24_3)
-            }
-
+//            Log.e("description-----", data.description)
+            iv_icon_column.setImageResource(MapperWeather.getIdResources(data.description))
         }
 
         private fun parseDataHour(string: String): String {
@@ -42,7 +39,7 @@ class JsonAdapterColumn : RecyclerView.Adapter<JsonAdapterColumn.JsonColumnListV
                 ColumnItem(
                     item.dt_txt,
                     item.weather[0].description,
-                    item.main.temp.toString()
+                    item.main.getTempInt().toString() + 186.toChar()
                 )
             )
         }
