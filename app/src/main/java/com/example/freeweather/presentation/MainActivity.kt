@@ -1,6 +1,9 @@
 package com.example.freeweather.presentation
 
 import android.app.Activity
+import android.app.SharedElementCallback
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -27,27 +30,56 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchNameGroup: LinearLayout
     lateinit var nameCity: TextView
     lateinit var iconCurrentDescription: ImageView
+    lateinit var pref: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        pref = getSharedPreferences("settings", Context.MODE_PRIVATE)
+
+
         initViews()
         initRecyclerView()
         searchButton.setOnClickListener {
-            searchNameGroup.visibility = LinearLayout.INVISIBLE
+            setVisibilityData(LinearLayout.VISIBLE)
+            val editor = pref.edit()
+            editor.putString("city", editNameCity.text.toString()).apply()
             loadDate(editNameCity.text.toString())
-            nameCity.visibility = TextView.VISIBLE
-            val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm: InputMethodManager =
+                getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
         }
         nameCity.setOnClickListener {
-            searchNameGroup.visibility = LinearLayout.VISIBLE
-            nameCity.visibility = TextView.INVISIBLE
+            setVisibilityData(LinearLayout.INVISIBLE)
             editNameCity.setText("")
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (pref.contains("city")) {
+            pref.getString("city", "rostov").let {
+                it?.let { it1 ->
+                    loadDate(it1)
+                }
+            }
+            setVisibilityData(LinearLayout.VISIBLE)
+        }
+    }
+
+    private fun setVisibilityData(visiblity: Int) {
+        if (visiblity == LinearLayout.VISIBLE){
+            searchNameGroup.visibility = LinearLayout.INVISIBLE
+            nameCity.visibility = LinearLayout.VISIBLE
+        } else {
+            searchNameGroup.visibility = LinearLayout.VISIBLE
+            nameCity.visibility = LinearLayout.INVISIBLE
+        }
+
+    }
+
 
     private fun loadDate(city: String) {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
@@ -58,8 +90,10 @@ class MainActivity : AppCompatActivity() {
                 jsonAdapterRow.list = it.list
                 jsonAdapterRow.notifyDataSetChanged()
                 jsonAdapterColumn.notifyDataSetChanged()
+                setVisibilityData(LinearLayout.VISIBLE)
             } else {
-                Toast.makeText(this, "Not found city name", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Not found city name- $it", Toast.LENGTH_LONG).show()
+                setVisibilityData(LinearLayout.INVISIBLE)
             }
 
         }
@@ -89,9 +123,10 @@ class MainActivity : AppCompatActivity() {
         val date = currentDate.format(Date())
         findViewById<TextView>(R.id.tv_current_data).text = date.toString()
         val currentTime = SimpleDateFormat("HH:mm")
-        val currentTemp = "${weather.list[0].main.getTempInt()}${186.toChar()}C"
+        val currentTemp = "${weather.list[0].main.getTempInt()}"
         findViewById<TextView>(R.id.tv_current_time).text = currentTime.format(Date())
         findViewById<TextView>(R.id.tv_current_temp).text = currentTemp
+        findViewById<TextView>(R.id.tv_current_temp_unit).text = "oC"
         findViewById<TextView>(R.id.tv_descriptions).text = weather.list[0].weather[0].description
         iconCurrentDescription.setImageResource(MapperWeather.getIdResources(weather.list[0].weather[0].description))
     }

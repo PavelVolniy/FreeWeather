@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.MainActivity"
+    android:background="@color/background"
+    >
 
     <LinearLayout
         android:id="@+id/ll_name_group"
@@ -25,6 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:inputType="text"
+            android:textColor="@color/all_text_color"
             android:maxLines="1"
             android:hint="@string/hint_name_city" />
 
@@ -32,7 +35,7 @@
             android:id="@+id/ib_search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/background"
             android:src="@drawable/ic_baseline_search_24"
             app:queryHint="city" />
 
@@ -46,7 +49,9 @@
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:textSize="35sp"
+        android:textColor="@color/all_text_color"
         android:visibility="invisible"
+        android:fontFamily="@font/prompt_regular"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -62,19 +67,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tv_current_data"
                 android:layout_width="match_parent"
+                android:textColor="@color/all_text_color"
+                android:fontFamily="@font/arimamadurai_bold"
                 android:layout_height="wrap_content"
+                android:textSize="13sp"
                 android:gravity="center" />
 
 
             <TextView
+                android:textColor="@color/all_text_color"
                 android:id="@+id/tv_current_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arimamadurai_medium"
                 android:gravity="center"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -89,13 +100,21 @@
             <TextView
                 android:id="@+id/tv_current_temp"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/arimamadurai_medium"
+                android:textColor="@color/all_text_color"
+                android:gravity="bottom"
                 android:layout_height="match_parent"
-                android:textSize="30sp" />
+                android:textSize="60sp" />
+            <TextView
+                android:id="@+id/tv_current_temp_unit"
+                android:textSize="20sp"
+                android:fontFamily="@font/arimamadurai_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
 
-            <!--            <TextView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:text="oC" />-->
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -111,6 +130,9 @@
                 android:id="@+id/tv_descriptions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textColor="@color/all_text_color"
+                android:fontFamily="@font/arimamadurai_bold"
                 android:gravity="bottom|center" />
 
         </LinearLayout>
@@ -120,8 +142,6 @@
         android:id="@+id/rv_data_forecast_temp_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"

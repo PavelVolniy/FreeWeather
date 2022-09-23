@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:textColor="@color/all_text_color"
         android:gravity="center"
+        android:fontFamily="@font/arimamadurai_medium"
+        android:textSize="15sp"
         android:text="09.00" />
 
     <ImageView
@@ -22,9 +25,12 @@
 
     <TextView
         android:id="@+id/tv_temp_column"
+        android:textColor="@color/temp_text_color"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:fontFamily="@font/arimamadurai_regular"
+        android:textSize="19sp"
         android:gravity="center"
         android:text="+4" />
 
