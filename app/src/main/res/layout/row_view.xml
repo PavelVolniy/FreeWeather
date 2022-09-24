@@ -10,7 +10,7 @@
         android:id="@+id/tv_name_date"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:fontFamily="@font/arimamadurai_regular"
         android:textSize="15sp"
         android:textColor="@color/all_text_color"

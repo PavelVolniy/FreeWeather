@@ -1,5 +1,6 @@
 package com.example.freeweather.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class JsonAdapterColumn : RecyclerView.Adapter<JsonAdapterColumn.JsonColumnListV
         }
 
         private fun parseDataHour(string: String): String {
-            val regex = Regex("""\d\d:\d\d""").find(string)
+            val regex = Regex("""(\d\d):(\d\d)""").find(string)
             val result = regex?.value
             return result.toString()
         }
