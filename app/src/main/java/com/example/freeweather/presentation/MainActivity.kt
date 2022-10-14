@@ -1,14 +1,12 @@
 package com.example.freeweather.presentation
 
 import android.app.Activity
-import android.app.SharedElementCallback
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             setVisibilityData(LinearLayout.VISIBLE)
             val editor = pref.edit()
             editor.putString("city", editNameCity.text.toString()).apply()
-            loadDate(editNameCity.text.toString())
+            loadData(editNameCity.text.toString())
             val imm: InputMethodManager =
                 getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         if (pref.contains("city")) {
             pref.getString("city", "rostov").let {
                 it?.let { it1 ->
-                    loadDate(it1)
+                    loadData(it1)
                 }
             }
             setVisibilityData(LinearLayout.VISIBLE)
@@ -81,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun loadDate(city: String) {
+    private fun loadData(city: String) {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.getJsonResultObserver().observe(this) {
             if (it != null) {

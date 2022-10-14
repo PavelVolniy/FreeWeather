@@ -68,7 +68,7 @@ class JsonAdapterRow : RecyclerView.Adapter<JsonAdapterRow.JsonRowListViewHolder
 
     private fun parseDate(str: String): String {
         val regex = Regex("""(\d\d\d\d-)(\d\d)-(\d\d)""").find(str)
-        return regex?.groupValues!![3] + ":" + regex?.groupValues[2]
+        return "${regex?.groupValues!![3]}:${regex.groupValues[2]}"
     }
 
     class RowItem(
